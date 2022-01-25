@@ -1,0 +1,6 @@
+<app-input type="text" label="Filtrer" [value]="filterText" (valueChangeEventEmitter)="handleFilterEvent($event)">
+</app-input>
+
+<ul *ngFor="let product of catalog">
+    <li>{{ product.label }} {{ product.price }}€</li>
+</ul>
