@@ -1,19 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { ClientFormComponent } from './components/client-form/client-form.component';
-import { RecapComponent } from './components/recap/recap.component';
-import { InputComponent } from './components/input/input.component';
+import { HeaderComponent } from './components/common/header/header.component';
+import { FooterComponent } from './components/common/footer/footer.component';
+import { ClientFormComponent } from './components/customerAccount/client-form/client-form.component';
+import { RecapComponent } from './components/customerAccount/recap/recap.component';
+import { InputComponent } from './components/common/input/input.component';
 
 import { PhonePipe } from './pipes/phone.pipe';
 import { MonService } from './services/mon-service.service';
 import { CatalogComponent } from './components/catalog/catalog.component';
+import { CustomerAccountComponent } from './components/customerAccount/customer-account/customer-account.component';
+import { HomeComponent } from './components/common/home/home.component';
+import { Page404Component } from './components/common/page404/page404.component';
+import { ShoppingCartComponent } from './components/shoppingCart/shopping-cart/shopping-cart.component';
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'compte-client', component: CustomerAccountComponent },
+  { path: 'catalogue', component: CatalogComponent },
+  { path: 'panier', component: ShoppingCartComponent },
+  { path: '**', component: Page404Component },
+];
 
 @NgModule({
   declarations: [
@@ -25,8 +38,17 @@ import { CatalogComponent } from './components/catalog/catalog.component';
     InputComponent,
     PhonePipe,
     CatalogComponent,
+    CustomerAccountComponent,
+    HomeComponent,
+    Page404Component,
+    ShoppingCartComponent,
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+  ],
   providers: [MonService],
   bootstrap: [AppComponent],
 })

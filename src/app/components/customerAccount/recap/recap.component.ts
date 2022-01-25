@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import '../../ts/types';
+import '../../../ts/types';
 
 @Component({
   selector: 'app-recap',
