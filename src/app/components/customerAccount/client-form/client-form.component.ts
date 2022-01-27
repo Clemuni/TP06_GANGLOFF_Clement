@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import '../../../ts/types';
+import { Form, FormInputChangeEventValues } from '../../../ts/types';
 
 @Component({
   selector: 'app-client-form',

@@ -1,4 +1,4 @@
-type FormField = {
+export type FormField = {
   accessor: string;
   value: string;
   isValid: boolean;
@@ -7,15 +7,19 @@ type FormField = {
   pattern?: RegExp;
 };
 
-type Form = FormField[];
+export type Form = FormField[];
 
-type FormInputChangeEventValues = {
+export type FormInputChangeEventValues = {
   value: string;
   accessor?: string;
   isValid: boolean;
 };
 
-type Product = {
+export type Product = {
   label: string;
   price: number;
+};
+
+export type CartProduct = {
+  products: Product[];
 };

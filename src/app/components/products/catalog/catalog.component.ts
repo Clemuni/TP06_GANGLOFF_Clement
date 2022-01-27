@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { MonService } from '../../services/mon-service.service';
-import '../../ts/types';
+import { MonService } from '../../../services/mon-service.service';
+import { Product, FormInputChangeEventValues } from '../../../ts/types';
+import { Store } from '@ngxs/store';
+import { AddProduct } from '../../../redux/actions/product.action';
 
 @Component({
   selector: 'app-catalog',
@@ -14,7 +16,7 @@ export class CatalogComponent implements OnInit {
 
   getCatalogSubscription: Subscription | null = null;
 
-  constructor(private monService: MonService) {}
+  constructor(private monService: MonService, private store: Store) {}
 
   ngOnInit(): void {
     this.getCatalogSubscription = this.monService
@@ -31,6 +33,10 @@ export class CatalogComponent implements OnInit {
             product.label.toLowerCase().includes(parameters.value.toLowerCase())
           ))
       );
+  }
+
+  addProduct(product: Product): void {
+    this.store.dispatch(new AddProduct(product));
   }
 
   ngOnDestroy(): void {

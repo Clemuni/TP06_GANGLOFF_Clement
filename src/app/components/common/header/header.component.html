@@ -1,3 +1,4 @@
 <a [routerLink]="['/']">Accueil</a>
 <a [routerLink]="['/compte-client']">Compte client</a>
 <a [routerLink]="['/catalogue']">Catalogue</a>
+<a class="right">Panier <span *ngIf="productsCount | async as count" class="badge">{{ count }}</span></a>
