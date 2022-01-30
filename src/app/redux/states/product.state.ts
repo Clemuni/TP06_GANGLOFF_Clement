@@ -1,4 +1,4 @@
-import { AddProduct } from '../actions/product.action';
+import { AddProduct, RemoveProduct } from '../actions/product.action';
 import { CartProduct, Product } from '../../ts/types';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 
@@ -43,6 +43,33 @@ export class ProductState {
           : { ...product, quantity: product.quantity + 1 }
       );
     else newProductsState = [...state.products, payload];
+    patchState({
+      products: newProductsState,
+    });
+  }
+
+  @Action(RemoveProduct)
+  remove(
+    { getState, patchState }: StateContext<CartProduct>,
+    { payload }: AddProduct
+  ) {
+    const state = getState();
+    const productToRemove = state.products.find(
+      (product: Product) => product.label === payload.label
+    );
+    if (!productToRemove) throw new Error('Produit inexistant');
+
+    let newProductsState: Product[] = [];
+    if (productToRemove.quantity > 1)
+      newProductsState = state.products.map((product: Product) =>
+        product !== productToRemove
+          ? product
+          : { ...product, quantity: product.quantity - 1 }
+      );
+    else
+      newProductsState = state.products.filter(
+        (product: Product) => product !== productToRemove
+      );
     patchState({
       products: newProductsState,
     });

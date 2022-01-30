@@ -16,18 +16,18 @@ import { InputComponent } from './components/common/input/input.component';
 import { PhonePipe } from './pipes/phone.pipe';
 import { MonService } from './services/mon-service.service';
 import { CatalogComponent } from './components/products/catalog/catalog.component';
+import { CartComponent } from './components/products/cart/cart.component';
 import { CustomerAccountComponent } from './components/customerAccount/customer-account/customer-account.component';
 import { HomeComponent } from './components/common/home/home.component';
 import { Page404Component } from './components/common/page404/page404.component';
-import { ShoppingCartComponent } from './components/shoppingCart/shopping-cart/shopping-cart.component';
 
 import { ProductState } from './redux/states/product.state';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'compte-client', component: CustomerAccountComponent },
-  { path: 'catalogue', component: CatalogComponent },
-  { path: 'panier', component: ShoppingCartComponent },
+  { path: 'produits/catalogue', component: CatalogComponent },
+  { path: 'produits/panier', component: CartComponent },
   { path: '**', component: Page404Component },
 ];
 
@@ -44,7 +44,7 @@ const appRoutes: Routes = [
     CustomerAccountComponent,
     HomeComponent,
     Page404Component,
-    ShoppingCartComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

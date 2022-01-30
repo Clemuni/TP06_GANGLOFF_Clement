@@ -1,1 +1,4 @@
-<p>cart works!</p>
+<ul *ngIf="products$ | async as products">
+    <li *ngFor="let product of products">{{ product.label }}<span class="quantity">{{ product.quantity }}</span><button
+            (click)="removeProduct(product)">Supprimer</button></li>
+</ul>
