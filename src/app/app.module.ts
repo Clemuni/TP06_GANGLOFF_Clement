@@ -22,12 +22,17 @@ import { HomeComponent } from './components/common/home/home.component';
 import { Page404Component } from './components/common/page404/page404.component';
 
 import { ProductState } from './redux/states/product.state';
+import { DetailsComponent } from './components/products/details/details.component';
+import { AddProductButtonComponent } from './components/common/products/add-product-button/add-product-button.component';
+import { RemoveProductButtonComponent } from './components/common/products/remove-product-button/remove-product-button.component';
+import { SeeDetailsProductButtonComponent } from './components/common/products/see-details-product-button/see-details-product-button.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'compte-client', component: CustomerAccountComponent },
   { path: 'produits/catalogue', component: CatalogComponent },
   { path: 'produits/panier', component: CartComponent },
+  { path: 'produits/:label', component: DetailsComponent },
   { path: '**', component: Page404Component },
 ];
 
@@ -45,6 +50,10 @@ const appRoutes: Routes = [
     HomeComponent,
     Page404Component,
     CartComponent,
+    DetailsComponent,
+    AddProductButtonComponent,
+    RemoveProductButtonComponent,
+    SeeDetailsProductButtonComponent,
   ],
   imports: [
     BrowserModule,
