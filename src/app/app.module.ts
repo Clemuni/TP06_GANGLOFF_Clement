@@ -28,6 +28,9 @@ import { RemoveProductButtonComponent } from './components/common/products/remov
 import { SeeDetailsProductButtonComponent } from './components/common/products/see-details-product-button/see-details-product-button.component';
 
 import { ApiHttpInterceptor } from './http/api-httpinterceptor';
+import { LoginComponent } from './components/http/login/login.component';
+
+import { AuthService } from './services/auth-service.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,6 +38,7 @@ const appRoutes: Routes = [
   { path: 'produits/catalogue', component: CatalogComponent },
   { path: 'produits/panier', component: CartComponent },
   { path: 'produits/:label', component: DetailsComponent },
+  { path: 'connexion', component: LoginComponent },
   { path: '**', component: Page404Component },
 ];
 
@@ -56,6 +60,7 @@ const appRoutes: Routes = [
     AddProductButtonComponent,
     RemoveProductButtonComponent,
     SeeDetailsProductButtonComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +70,7 @@ const appRoutes: Routes = [
     NgxsModule.forRoot([ProductState]),
   ],
   providers: [
+    AuthService,
     MonService,
     { provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true },
   ],
