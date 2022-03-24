@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 
@@ -26,6 +26,8 @@ import { DetailsComponent } from './components/products/details/details.componen
 import { AddProductButtonComponent } from './components/common/products/add-product-button/add-product-button.component';
 import { RemoveProductButtonComponent } from './components/common/products/remove-product-button/remove-product-button.component';
 import { SeeDetailsProductButtonComponent } from './components/common/products/see-details-product-button/see-details-product-button.component';
+
+import { ApiHttpInterceptor } from './http/api-httpinterceptor';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -62,7 +64,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgxsModule.forRoot([ProductState]),
   ],
-  providers: [MonService],
+  providers: [
+    MonService,
+    { provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
